@@ -118,19 +118,19 @@ jobs:
                   // === ShareX.IndexerLib ===
                   // Screenshot(new DirectoryIndexerForm(new IndexerSettings()), "DirectoryIndexerForm"); // HANGS
 
-                  // === ShareX (main app) ===
-                  // Screenshot(new AboutForm(), "AboutForm"); // HANGS
-                  Screenshot(new ActionsForm(), "ActionsForm");
-                  Screenshot(new ApplicationSettingsForm(), "ApplicationSettingsForm");
-                  Screenshot(new ClipboardFormatForm(), "ClipboardFormatForm");
-                  Screenshot(new FirstTimeConfigForm(), "FirstTimeConfigForm");
-                  Screenshot(new FirstTimeUploadForm(), "FirstTimeUploadForm");
-                  Screenshot(new InspectWindowForm(), "InspectWindowForm");
-                  Screenshot(new QRCodeForm("https://example.com"), "QRCodeForm");
-                  Screenshot(new QuickTaskMenuEditorForm(), "QuickTaskMenuEditorForm");
-                  Screenshot(new WatchFolderForm(), "WatchFolderForm");
-                  Screenshot(new FileExistForm("C:\\test\\example.png"), "FileExistForm");
-                  Screenshot(new MainForm(), "MainForm");
+                  // === ShareX (main app) - use lambdas to catch constructor exceptions ===
+                  // Screenshot(() => new AboutForm(), "AboutForm"); // HANGS
+                  Screenshot(() => new ActionsForm(), "ActionsForm");
+                  Screenshot(() => new ApplicationSettingsForm(), "ApplicationSettingsForm");
+                  Screenshot(() => new ClipboardFormatForm(), "ClipboardFormatForm");
+                  Screenshot(() => new FirstTimeConfigForm(), "FirstTimeConfigForm");
+                  Screenshot(() => new FirstTimeUploadForm(), "FirstTimeUploadForm");
+                  Screenshot(() => new InspectWindowForm(), "InspectWindowForm");
+                  Screenshot(() => new QRCodeForm("https://example.com"), "QRCodeForm");
+                  Screenshot(() => new QuickTaskMenuEditorForm(), "QuickTaskMenuEditorForm");
+                  Screenshot(() => new WatchFolderForm(), "WatchFolderForm");
+                  Screenshot(() => new FileExistForm("C:\\test\\example.png"), "FileExistForm");
+                  Screenshot(() => new MainForm(), "MainForm");
 
                   // === Forms that need a Bitmap/Image ===
                   Screenshot(new PrintForm(testImage, new PrintSettings()), "PrintForm");
@@ -212,6 +212,7 @@ jobs:
                   }
               }
 
+              // Overload that takes an already-created form (catches exceptions during show/capture)
               static void Screenshot(Form form, string name)
               {
                   Console.WriteLine($"Starting: {name}");
@@ -220,7 +221,6 @@ jobs:
                   var done = false;
                   IntPtr handle = IntPtr.Zero;
                   
-                  // Capture handle as soon as it's created
                   form.HandleCreated += (s, e) => handle = form.Handle;
                   
                   // Background thread to kill form after timeout using Win32 PostMessage
@@ -260,6 +260,22 @@ jobs:
                   catch (Exception ex)
                   {
                       done = true;
+                      Console.WriteLine($"Failed {name}: {ex.Message}");
+                      try { form?.Dispose(); } catch { }
+                  }
+              }
+
+              // Overload with factory function - catches exceptions during construction too
+              static void Screenshot(Func<Form> createForm, string name)
+              {
+                  try
+                  {
+                      var form = createForm();
+                      Screenshot(form, name);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine($"Starting: {name}");
                       Console.WriteLine($"Failed {name}: {ex.Message}");
                   }
               }
