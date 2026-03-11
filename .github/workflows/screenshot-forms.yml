@@ -34,6 +34,7 @@ jobs:
           using ShareX.ScreenCaptureLib;
           using ShareX.UploadersLib;
           using ShareX.HistoryLib;
+          using ShareX.HistoryLib.Forms;
           using ShareX.ImageEffectsLib;
 
           class Program
@@ -82,7 +83,7 @@ jobs:
                   Screenshot(new EditorStartupForm(new RegionCaptureOptions()), "EditorStartupForm");
                   Screenshot(new NewImageForm(new RegionCaptureOptions()), "NewImageForm");
                   Screenshot(new StickerPackForm(new List<StickerPackInfo>()), "StickerPackForm");
-                  Screenshot(new TextDrawingInputBox("Sample text", new TextDrawingOptions(), false, new ColorPickerOptions()), "TextDrawingInputBox");
+                  // TextDrawingInputBox is internal, skip it
 
                   // === ShareX.UploadersLib ===
                   Screenshot(new EmailForm(), "EmailForm");
@@ -123,7 +124,7 @@ jobs:
                   Screenshot(new HistoryItemEditForm(new HistoryItem()), "HistoryItemEditForm");
 
                   // === ShareX.ImageEffectsLib ===
-                  Screenshot(new ImageEffectsForm((Bitmap)testBitmap.Clone(), new List<ImageEffectPreset> { new ImageEffectPreset("Default") }, 0), "ImageEffectsForm");
+                  Screenshot(new ImageEffectsForm((Bitmap)testBitmap.Clone(), new List<ImageEffectPreset> { ImageEffectPreset.GetDefaultPreset() }, 0), "ImageEffectsForm");
 
                   // === More ShareX forms ===
                   Screenshot(new QuickTaskInfoEditForm(new QuickTaskInfo()), "QuickTaskInfoEditForm");
@@ -140,8 +141,8 @@ jobs:
                   Screenshot(new AfterCaptureForm(new TaskMetadata((Bitmap)testBitmap.Clone()), new TaskSettings()), "AfterCaptureForm");
 
                   // TaskInfo forms
-                  var taskInfo = new TaskInfo();
-                  taskInfo.TaskSettings = new TaskSettings();
+                  var taskSettings = new TaskSettings();
+                  var taskInfo = new TaskInfo(taskSettings);
                   taskInfo.FilePath = "C:\\test\\screenshot.png";
                   Screenshot(new AfterUploadForm(taskInfo), "AfterUploadForm");
                   Screenshot(new BeforeUploadForm(taskInfo), "BeforeUploadForm");
