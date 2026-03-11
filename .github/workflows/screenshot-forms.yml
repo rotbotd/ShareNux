@@ -20,14 +20,19 @@ jobs:
         run: |
           $code = @'
           using System;
+          using System.Collections.Generic;
           using System.Drawing;
           using System.Drawing.Imaging;
           using System.IO;
           using System.Windows.Forms;
+          using ShareX;
           using ShareX.HelpersLib;
+          using ShareX.IndexerLib;
           using ShareX.MediaLib;
           using ShareX.ScreenCaptureLib;
           using ShareX.UploadersLib;
+          using ShareX.HistoryLib;
+          using ShareX.ImageEffectsLib;
 
           class Program
           {
@@ -39,7 +44,16 @@ jobs:
 
                   Directory.CreateDirectory("screenshots");
 
-                  // ShareX.HelpersLib forms
+                  // Create a test image for forms that need one
+                  using var testBitmap = new Bitmap(400, 300);
+                  using (var g = Graphics.FromImage(testBitmap))
+                  {
+                      g.Clear(Color.SteelBlue);
+                      g.DrawString("Test Image", new Font("Arial", 24), Brushes.White, 100, 120);
+                  }
+                  var testImage = (Image)testBitmap.Clone();
+
+                  // === ShareX.HelpersLib ===
                   Screenshot(new HashCheckerForm(), "HashCheckerForm");
                   Screenshot(new ClipboardViewerForm(), "ClipboardViewerForm");
                   Screenshot(new ColorPickerForm(Color.Red), "ColorPickerForm");
@@ -48,20 +62,72 @@ jobs:
                   Screenshot(new MyMessageBox("Test message", "Title", MessageBoxButtons.OK), "MyMessageBox");
                   Screenshot(new PrintTextForm("Sample text to print", new PrintSettings()), "PrintTextForm");
 
-                  // ShareX.MediaLib forms
+                  // === ShareX.MediaLib ===
                   Screenshot(new ImageSplitterForm(), "ImageSplitterForm");
                   Screenshot(new ImageThumbnailerForm(), "ImageThumbnailerForm");
+                  Screenshot(new ImageCombinerForm(new ImageCombinerOptions()), "ImageCombinerForm");
+                  Screenshot(new VideoConverterForm("ffmpeg.exe", new VideoConverterOptions()), "VideoConverterForm");
+                  Screenshot(new VideoThumbnailerForm("ffmpeg.exe", new VideoThumbnailOptions()), "VideoThumbnailerForm");
 
-                  // ShareX.ScreenCaptureLib forms
+                  // === ShareX.ScreenCaptureLib ===
                   Screenshot(new CanvasSizeForm(), "CanvasSizeForm");
                   Screenshot(new ImageInsertForm(), "ImageInsertForm");
+                  Screenshot(new ImageSizeForm(new Size(800, 600), ImageInterpolationMode.NearestNeighbor), "ImageSizeForm");
+                  Screenshot(new ScreenRecordForm(new Rectangle(0, 0, 800, 600)), "ScreenRecordForm");
+                  Screenshot(new ScrollingCaptureRegionForm(new Rectangle(0, 0, 800, 600)), "ScrollingCaptureRegionForm");
+                  Screenshot(new ScrollingCaptureOptionsForm(new ScrollingCaptureOptions()), "ScrollingCaptureOptionsForm");
+                  Screenshot(new FFmpegOptionsForm(new ScreenRecordingOptions()), "FFmpegOptionsForm");
+                  Screenshot(new EditorStartupForm(new RegionCaptureOptions()), "EditorStartupForm");
+                  Screenshot(new NewImageForm(new RegionCaptureOptions()), "NewImageForm");
+                  Screenshot(new StickerPackForm(new List<StickerPackInfo>()), "StickerPackForm");
+                  Screenshot(new TextDrawingInputBox("Sample text", new TextDrawingOptions(), false, new ColorPickerOptions()), "TextDrawingInputBox");
 
-                  // ShareX.UploadersLib forms
+                  // === ShareX.UploadersLib ===
                   Screenshot(new EmailForm(), "EmailForm");
                   Screenshot(new JiraUpload(), "JiraUpload");
                   Screenshot(new PuushLoginForm(), "PuushLoginForm");
                   Screenshot(new CustomUploaderSyntaxTestForm(), "CustomUploaderSyntaxTestForm");
                   Screenshot(new UserPassBox("Login", "", ""), "UserPassBox");
+                  Screenshot(new YouTubeVideoOptionsForm(), "YouTubeVideoOptionsForm");
+                  Screenshot(new TextUploadForm("Sample text content"), "TextUploadForm");
+                  Screenshot(new ParserSelectForm(new[] { "Option 1", "Option 2", "Option 3" }), "ParserSelectForm");
+
+                  // === ShareX.IndexerLib ===
+                  Screenshot(new DirectoryIndexerForm(new IndexerSettings()), "DirectoryIndexerForm");
+
+                  // === ShareX (main app) ===
+                  Screenshot(new AboutForm(), "AboutForm");
+                  Screenshot(new ActionsForm(), "ActionsForm");
+                  Screenshot(new ApplicationSettingsForm(), "ApplicationSettingsForm");
+                  Screenshot(new ClipboardFormatForm(), "ClipboardFormatForm");
+                  Screenshot(new FirstTimeConfigForm(), "FirstTimeConfigForm");
+                  Screenshot(new FirstTimeUploadForm(), "FirstTimeUploadForm");
+                  Screenshot(new InspectWindowForm(), "InspectWindowForm");
+                  Screenshot(new QRCodeForm("https://example.com"), "QRCodeForm");
+                  Screenshot(new QuickTaskMenuEditorForm(), "QuickTaskMenuEditorForm");
+                  Screenshot(new WatchFolderForm(), "WatchFolderForm");
+                  Screenshot(new FileExistForm("C:\\test\\example.png"), "FileExistForm");
+                  Screenshot(new MainForm(), "MainForm");
+
+                  // === Forms that need a Bitmap/Image ===
+                  Screenshot(new PrintForm(testImage, new PrintSettings()), "PrintForm");
+                  Screenshot(new ImageBeautifierForm((Bitmap)testBitmap.Clone()), "ImageBeautifierForm");
+                  Screenshot(new RegionCaptureLightForm((Bitmap)testBitmap.Clone()), "RegionCaptureLightForm");
+                  Screenshot(new RegionCaptureTransparentForm(), "RegionCaptureTransparentForm");
+
+                  // === ShareX.HistoryLib ===
+                  Screenshot(new HistorySettingsForm(new HistorySettings()), "HistorySettingsForm");
+                  Screenshot(new ImageHistorySettingsForm(new ImageHistorySettings()), "ImageHistorySettingsForm");
+                  Screenshot(new HistoryItemEditForm(new HistoryItem()), "HistoryItemEditForm");
+
+                  // === ShareX.ImageEffectsLib ===
+                  Screenshot(new ImageEffectsForm((Bitmap)testBitmap.Clone(), new List<ImageEffectPreset> { new ImageEffectPreset("Default") }, 0), "ImageEffectsForm");
+
+                  // === More ShareX forms ===
+                  Screenshot(new QuickTaskInfoEditForm(new QuickTaskInfo()), "QuickTaskInfoEditForm");
+                  Screenshot(new ActionsToolbarEditForm(new List<HotkeyType>()), "ActionsToolbarEditForm");
+                  Screenshot(new StickerForm(new List<StickerPackInfo> { new StickerPackInfo() { Name = "Test" } }, 0), "StickerForm");
+                  Screenshot(new CustomUploaderSettingsForm(new UploadersConfig()), "CustomUploaderSettingsForm");
               }
 
               static void Screenshot(Form form, string name)
@@ -103,10 +169,14 @@ jobs:
               <ImplicitUsings>enable</ImplicitUsings>
             </PropertyGroup>
             <ItemGroup>
+              <ProjectReference Include="..\ShareX\ShareX.csproj" />
               <ProjectReference Include="..\ShareX.HelpersLib\ShareX.HelpersLib.csproj" />
+              <ProjectReference Include="..\ShareX.HistoryLib\ShareX.HistoryLib.csproj" />
+              <ProjectReference Include="..\ShareX.IndexerLib\ShareX.IndexerLib.csproj" />
               <ProjectReference Include="..\ShareX.MediaLib\ShareX.MediaLib.csproj" />
               <ProjectReference Include="..\ShareX.ScreenCaptureLib\ShareX.ScreenCaptureLib.csproj" />
               <ProjectReference Include="..\ShareX.UploadersLib\ShareX.UploadersLib.csproj" />
+              <ProjectReference Include="..\ShareX.ImageEffectsLib\ShareX.ImageEffectsLib.csproj" />
             </ItemGroup>
           </Project>
           '@
