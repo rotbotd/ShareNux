@@ -75,6 +75,7 @@ jobs:
               }
           }
           '@
+          New-Item -ItemType Directory -Force -Path "sharex/ScreenshotTool"
           $code | Out-File -Encoding UTF8 "sharex/ScreenshotTool/Program.cs"
 
           $csproj = @'
@@ -90,7 +91,6 @@ jobs:
             </ItemGroup>
           </Project>
           '@
-          New-Item -ItemType Directory -Force -Path "sharex/ScreenshotTool"
           $csproj | Out-File -Encoding UTF8 "sharex/ScreenshotTool/ScreenshotTool.csproj"
 
       - name: Build and run screenshot tool
