@@ -116,10 +116,10 @@ jobs:
                   Screenshot(new ParserSelectForm(new[] { "Option 1", "Option 2", "Option 3" }), "ParserSelectForm");
 
                   // === ShareX.IndexerLib ===
-                  Screenshot(new DirectoryIndexerForm(new IndexerSettings()), "DirectoryIndexerForm");
+                  // Screenshot(new DirectoryIndexerForm(new IndexerSettings()), "DirectoryIndexerForm"); // HANGS
 
                   // === ShareX (main app) ===
-                  Screenshot(new AboutForm(), "AboutForm");
+                  // Screenshot(new AboutForm(), "AboutForm"); // HANGS
                   Screenshot(new ActionsForm(), "ActionsForm");
                   Screenshot(new ApplicationSettingsForm(), "ApplicationSettingsForm");
                   Screenshot(new ClipboardFormatForm(), "ClipboardFormatForm");
