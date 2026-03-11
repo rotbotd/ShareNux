@@ -10,6 +10,21 @@ jobs:
       - name: Clone upstream ShareX
         run: git clone --depth 1 --branch v18.0.1 https://github.com/ShareX/ShareX.git sharex
 
+      - name: Patch internal classes to public
+        shell: pwsh
+        run: |
+          # Make internal forms public so we can screenshot them
+          $files = @(
+            "sharex/ShareX.ScreenCaptureLib/Forms/TextDrawingInputBox.cs",
+            "sharex/ShareX.ScreenCaptureLib/Forms/TextDrawingInputBox.Designer.cs"
+          )
+          foreach ($file in $files) {
+            if (Test-Path $file) {
+              (Get-Content $file) -replace 'internal partial class', 'public partial class' | Set-Content $file
+              Write-Host "Patched: $file"
+            }
+          }
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -83,7 +98,7 @@ jobs:
                   Screenshot(new EditorStartupForm(new RegionCaptureOptions()), "EditorStartupForm");
                   Screenshot(new NewImageForm(new RegionCaptureOptions()), "NewImageForm");
                   Screenshot(new StickerPackForm(new List<StickerPackInfo>()), "StickerPackForm");
-                  // TextDrawingInputBox is internal, skip it
+                  Screenshot(new TextDrawingInputBox("Sample text", new TextDrawingOptions(), false, new ColorPickerOptions()), "TextDrawingInputBox");
 
                   // === ShareX.UploadersLib ===
                   Screenshot(new EmailForm(), "EmailForm");
