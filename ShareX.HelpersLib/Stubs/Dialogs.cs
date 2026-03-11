@@ -27,9 +27,6 @@ using System;
 
 namespace ShareX.HelpersLib
 {
-    // Stub replacements for WinForms dialogs
-    // TODO: Implement with Avalonia dialogs
-    
     public enum DialogResult
     {
         None,
@@ -53,7 +50,6 @@ namespace ShareX.HelpersLib
 
         public DialogResult ShowDialog()
         {
-            // TODO: Implement with Avalonia file picker
             return DialogResult.Cancel;
         }
 
@@ -71,7 +67,6 @@ namespace ShareX.HelpersLib
 
         public DialogResult ShowDialog()
         {
-            // TODO: Implement with Avalonia file picker
             return DialogResult.Cancel;
         }
 
@@ -85,7 +80,6 @@ namespace ShareX.HelpersLib
 
         public DialogResult ShowDialog()
         {
-            // TODO: Implement with Avalonia folder picker
             return DialogResult.Cancel;
         }
 

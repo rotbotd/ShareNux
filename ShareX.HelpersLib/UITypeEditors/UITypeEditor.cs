@@ -29,7 +29,6 @@ using System.ComponentModel;
 namespace ShareX.HelpersLib
 {
     // Stub replacement for System.Drawing.Design.UITypeEditor
-    // TODO: Implement with Avalonia equivalents
     public class UITypeEditor
     {
         public virtual object EditValue(ITypeDescriptorContext context, IServiceProvider provider, object value)

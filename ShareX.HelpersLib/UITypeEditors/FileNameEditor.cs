@@ -29,7 +29,6 @@ using System.ComponentModel;
 namespace ShareX.HelpersLib
 {
     // Stub replacement for System.Drawing.Design.FileNameEditor
-    // TODO: Implement with Avalonia file picker
     public class FileNameEditor : UITypeEditor
     {
     }
