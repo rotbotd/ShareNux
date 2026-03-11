@@ -27,8 +27,6 @@ using Newtonsoft.Json;
 using ShareX.UploadersLib.Properties;
 using System;
 using System.Collections.Specialized;
-using System.Drawing;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.TextUploaders
 {

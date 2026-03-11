@@ -26,7 +26,6 @@
 using Microsoft.Win32;
 using ShareX.HelpersLib;
 using System;
-using System.Windows.Forms;
 
 #if MicrosoftStore
 using Windows.ApplicationModel;

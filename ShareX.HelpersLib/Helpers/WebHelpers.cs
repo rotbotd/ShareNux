@@ -24,7 +24,6 @@
 #endregion License Information (GPL v3)
 
 using System;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Http;

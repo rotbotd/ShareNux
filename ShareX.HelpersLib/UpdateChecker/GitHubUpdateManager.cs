@@ -25,7 +25,6 @@
 
 using System;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using Timer = System.Threading.Timer;
 
 namespace ShareX.HelpersLib

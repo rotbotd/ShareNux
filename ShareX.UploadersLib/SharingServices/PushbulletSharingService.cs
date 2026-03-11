@@ -25,7 +25,6 @@
 
 using ShareX.HelpersLib;
 using ShareX.UploadersLib.FileUploaders;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.SharingServices
 {

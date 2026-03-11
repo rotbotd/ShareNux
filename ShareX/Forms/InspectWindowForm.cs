@@ -28,9 +28,7 @@ using ShareX.Properties;
 using ShareX.ScreenCaptureLib;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace ShareX
 {

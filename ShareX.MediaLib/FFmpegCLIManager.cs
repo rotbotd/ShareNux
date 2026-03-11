@@ -27,7 +27,6 @@ using ShareX.HelpersLib;
 using ShareX.MediaLib.Properties;
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;

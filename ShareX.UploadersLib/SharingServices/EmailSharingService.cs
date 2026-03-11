@@ -24,7 +24,6 @@
 #endregion License Information (GPL v3)
 
 using ShareX.UploadersLib.FileUploaders;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.SharingServices
 {

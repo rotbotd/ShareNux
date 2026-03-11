@@ -25,7 +25,6 @@
 
 using Newtonsoft.Json;
 using System.Text;
-using System.Windows.Forms;
 
 namespace ShareX.HelpersLib
 {

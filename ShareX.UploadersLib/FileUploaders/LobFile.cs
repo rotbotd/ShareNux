@@ -28,9 +28,7 @@ using ShareX.HelpersLib;
 using ShareX.UploadersLib.Properties;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.FileUploaders
 {

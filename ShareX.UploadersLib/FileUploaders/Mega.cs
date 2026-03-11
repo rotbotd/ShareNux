@@ -27,10 +27,8 @@ using CG.Web.MegaApiClient;
 using ShareX.UploadersLib.Properties;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.FileUploaders
 {

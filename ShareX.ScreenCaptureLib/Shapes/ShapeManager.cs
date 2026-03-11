@@ -27,11 +27,8 @@ using ShareX.HelpersLib;
 using ShareX.ImageEffectsLib;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace ShareX.ScreenCaptureLib
 {

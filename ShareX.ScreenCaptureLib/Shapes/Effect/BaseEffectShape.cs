@@ -25,8 +25,6 @@
 
 using ShareX.HelpersLib;
 using ShareX.ScreenCaptureLib.Properties;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 
 namespace ShareX.ScreenCaptureLib

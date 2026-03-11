@@ -25,7 +25,6 @@
 
 using ShareX.HelpersLib;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 namespace ShareX.HistoryLib.Forms
 {

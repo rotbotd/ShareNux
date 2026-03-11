@@ -28,10 +28,8 @@ using ShareX.HelpersLib;
 using ShareX.UploadersLib.Properties;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.TextUploaders
 {

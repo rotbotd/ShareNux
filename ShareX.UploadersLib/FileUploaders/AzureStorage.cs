@@ -27,12 +27,10 @@ using ShareX.HelpersLib;
 using ShareX.UploadersLib.Properties;
 using System;
 using System.Collections.Specialized;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.FileUploaders
 {

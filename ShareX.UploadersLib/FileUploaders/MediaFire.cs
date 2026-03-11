@@ -27,14 +27,12 @@ using Newtonsoft.Json;
 using ShareX.HelpersLib;
 using ShareX.UploadersLib.Properties;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.FileUploaders
 {

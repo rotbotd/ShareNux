@@ -26,7 +26,6 @@
 using ShareX.HelpersLib;
 using ShareX.ImageEffectsLib;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace ShareX.ScreenCaptureLib
 {

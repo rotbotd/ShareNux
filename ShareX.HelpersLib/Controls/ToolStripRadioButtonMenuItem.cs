@@ -24,9 +24,6 @@
 #endregion License Information (GPL v3)
 
 using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace ShareX.HelpersLib
 {

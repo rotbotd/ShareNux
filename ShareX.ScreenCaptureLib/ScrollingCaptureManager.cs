@@ -26,9 +26,6 @@
 using ShareX.HelpersLib;
 using System;
 using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 

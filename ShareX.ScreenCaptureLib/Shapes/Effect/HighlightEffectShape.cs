@@ -25,7 +25,6 @@
 
 using ShareX.HelpersLib;
 using ShareX.ScreenCaptureLib.Properties;
-using System.Drawing;
 
 namespace ShareX.ScreenCaptureLib
 {

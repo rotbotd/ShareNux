@@ -26,10 +26,8 @@
 using ShareX.HelpersLib;
 using ShareX.Properties;
 using System.ComponentModel;
-using System.Drawing;
 using System.Globalization;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace ShareX
 {

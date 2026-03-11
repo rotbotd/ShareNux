@@ -27,8 +27,6 @@
 // Filters: http://www.codeproject.com/Articles/2008/Image-Processing-for-Dummies-with-C-and-GDI-Part-2
 
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Threading.Tasks;
 
 namespace ShareX.HelpersLib

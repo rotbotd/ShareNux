@@ -34,8 +34,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
-using System.Drawing;
-using System.Drawing.Design;
 using System.Linq;
 
 namespace ShareX

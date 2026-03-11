@@ -25,8 +25,6 @@
 
 using System;
 using System.Collections;
-using System.Drawing;
-using System.Drawing.Imaging;
 
 namespace ShareX.HelpersLib
 {

@@ -24,7 +24,6 @@
 #endregion License Information (GPL v3)
 
 using ShareX.HelpersLib;
-using System.Drawing;
 
 namespace ShareX.ImageEffectsLib
 {

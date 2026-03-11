@@ -25,11 +25,8 @@
 
 using ShareX.HelpersLib;
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace ShareX.ScreenCaptureLib
 {

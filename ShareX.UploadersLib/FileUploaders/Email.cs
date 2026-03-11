@@ -24,11 +24,9 @@
 #endregion License Information (GPL v3)
 
 using ShareX.UploadersLib.Properties;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
-using System.Windows.Forms;
 
 namespace ShareX.UploadersLib.FileUploaders
 {

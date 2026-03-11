@@ -26,7 +26,6 @@
 using Newtonsoft.Json;
 using ShareX.HelpersLib;
 using System.ComponentModel;
-using System.Drawing.Design;
 
 namespace ShareX.IndexerLib
 {

@@ -25,9 +25,7 @@
 
 using ShareX.HelpersLib.Properties;
 using System;
-using System.Drawing;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ShareX.HelpersLib
 {

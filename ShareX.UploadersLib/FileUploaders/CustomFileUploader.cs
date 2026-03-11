@@ -26,7 +26,6 @@
 using ShareX.HelpersLib;
 using ShareX.UploadersLib.Properties;
 using System;
-using System.Drawing;
 using System.IO;
 
 namespace ShareX.UploadersLib.FileUploaders

@@ -26,9 +26,7 @@
 using ShareX.HelpersLib;
 using ShareX.MediaLib.Properties;
 using System;
-using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 
 namespace ShareX.MediaLib
 {

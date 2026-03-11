@@ -27,12 +27,10 @@ using ShareX.HelpersLib;
 using ShareX.UploadersLib.Properties;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace ShareX.UploadersLib.FileUploaders

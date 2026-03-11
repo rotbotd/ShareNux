@@ -23,8 +23,6 @@
 
 #endregion License Information (GPL v3)
 
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace ShareX.HelpersLib
 {

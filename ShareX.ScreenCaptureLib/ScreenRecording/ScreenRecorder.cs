@@ -27,7 +27,6 @@ using ShareX.HelpersLib;
 using ShareX.MediaLib;
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.Text;
 using System.Threading;
 

@@ -28,7 +28,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Management;
 using System.Threading;
-using System.Windows.Forms;
 
 namespace ShareX.Steam
 {

@@ -24,7 +24,6 @@
 #endregion License Information (GPL v3)
 
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace ShareX.HelpersLib
 {

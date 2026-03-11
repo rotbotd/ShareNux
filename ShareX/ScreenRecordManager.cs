@@ -28,10 +28,8 @@ using ShareX.MediaLib;
 using ShareX.Properties;
 using ShareX.ScreenCaptureLib;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ShareX
 {
