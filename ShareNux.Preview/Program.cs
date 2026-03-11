@@ -20,7 +20,7 @@ class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new HashCheckerWindow();
+            desktop.MainWindow = new ErrorWindow();
         }
         base.OnFrameworkInitializationCompleted();
     }
