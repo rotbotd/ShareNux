@@ -111,7 +111,7 @@ jobs:
                   Screenshot(new ParserSelectForm(new[] { "Option 1", "Option 2", "Option 3" }), "ParserSelectForm");
 
                   // === ShareX.IndexerLib ===
-                  // DirectoryIndexerForm hangs, skip it
+                  Screenshot(new DirectoryIndexerForm(new IndexerSettings()), "DirectoryIndexerForm");
 
                   // === ShareX (main app) ===
                   Screenshot(new AboutForm(), "AboutForm");
@@ -211,15 +211,36 @@ jobs:
               {
                   Console.WriteLine($"Starting: {name}");
                   Console.Out.Flush();
+
+                  var done = false;
+                  
+                  // Background thread to kill form after timeout
+                  var killer = new System.Threading.Thread(() =>
+                  {
+                      System.Threading.Thread.Sleep(10000);
+                      if (!done)
+                      {
+                          Console.WriteLine($"TIMEOUT: {name} (skipping)");
+                          Console.Out.Flush();
+                          try 
+                          { 
+                              form.BeginInvoke((Action)(() => 
+                              { 
+                                  form.Close(); 
+                                  form.Dispose(); 
+                              })); 
+                          } 
+                          catch { }
+                      }
+                  });
+                  killer.IsBackground = true;
+                  killer.Start();
+
                   try
                   {
                       form.StartPosition = FormStartPosition.Manual;
                       form.Location = new Point(0, 0);
-                      Console.WriteLine($"  Showing: {name}");
-                      Console.Out.Flush();
                       form.Show();
-                      Console.WriteLine($"  Refreshing: {name}");
-                      Console.Out.Flush();
                       form.Refresh();
                       Application.DoEvents();
 
@@ -230,11 +251,13 @@ jobs:
                           Console.WriteLine($"Saved: {name}.png");
                       }
 
+                      done = true;
                       form.Close();
                       form.Dispose();
                   }
                   catch (Exception ex)
                   {
+                      done = true;
                       Console.WriteLine($"Failed {name}: {ex.Message}");
                   }
               }
