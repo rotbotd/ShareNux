@@ -6,8 +6,10 @@
   </PropertyGroup>
   
   <!-- Exclude WinForms designer files from compilation (keep for upstream merges) -->
+  <!-- But keep Resources.Designer.cs for localization -->
   <ItemGroup>
     <Compile Remove="**/*.Designer.cs" />
+    <Compile Include="**/Resources.Designer.cs" />
   </ItemGroup>
   
   <ItemGroup>
@@ -15,5 +17,7 @@
     <PackageReference Include="System.Resources.Extensions" Version="10.0.4" />
     <PackageReference Include="SkiaSharp" Version="3.119.0" />
     <PackageReference Include="Avalonia" Version="11.2.7" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.2.7" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.7" />
   </ItemGroup>
 </Project>

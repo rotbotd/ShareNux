@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ShareX.HelpersLib.HashCheckerWindow"
+        Title="Hash check"
+        Width="681" Height="392"
+        CanResize="False"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+    
+    <Grid Margin="16" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,*" ColumnDefinitions="Auto,*,Auto">
+        
+        <!-- File path row -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="File path:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtFilePath" Margin="0,0,8,8"
+                 DragDrop.AllowDrop="True"/>
+        <Button Grid.Row="0" Grid.Column="2" x:Name="btnFilePathBrowse" Content="..." Width="32" Margin="0,0,0,8"/>
+        
+        <!-- File path 2 row (for compare mode) -->
+        <TextBlock Grid.Row="1" Grid.Column="0" x:Name="lblFilePath2" Text="File path 2:" VerticalAlignment="Center" Margin="0,0,8,8" IsVisible="False"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtFilePath2" Margin="0,0,8,8" IsVisible="False"
+                 DragDrop.AllowDrop="True"/>
+        <Button Grid.Row="1" Grid.Column="2" x:Name="btnFilePathBrowse2" Content="..." Width="32" Margin="0,0,0,8" IsVisible="False"/>
+        
+        <!-- Compare two files checkbox -->
+        <CheckBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="cbCompareTwoFiles" 
+                  Content="Compare two files" Margin="0,0,0,8"/>
+        
+        <!-- Hash type row -->
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Hash type:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" x:Name="cbHashType" HorizontalAlignment="Left" Width="120" Margin="0,0,0,8"/>
+        
+        <!-- Start button -->
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" x:Name="btnStartHashCheck" 
+                Content="Start" HorizontalAlignment="Left" Margin="0,0,0,8"/>
+        
+        <!-- Progress bar -->
+        <ProgressBar Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" x:Name="pbProgress" 
+                     Height="23" Margin="0,0,0,8" Minimum="0" Maximum="100"/>
+        
+        <!-- Result row -->
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Result:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" x:Name="txtResult" IsReadOnly="True" Margin="0,0,0,8"/>
+        
+        <!-- Target row -->
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Target:" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" x:Name="txtTarget" Margin="0,0,0,8"/>
+        
+    </Grid>
+</Window>
