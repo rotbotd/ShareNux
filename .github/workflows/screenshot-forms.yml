@@ -36,16 +36,15 @@ jobs:
 
                   Directory.CreateDirectory("screenshots");
 
-                  // Forms with parameterless constructors
+                  // Forms we can instantiate
                   Screenshot(new HashCheckerForm(), "HashCheckerForm");
-                  Screenshot(new DebugForm(), "DebugForm");
                   Screenshot(new ClipboardViewerForm(), "ClipboardViewerForm");
                   Screenshot(new ColorPickerForm(Color.Red), "ColorPickerForm");
                   Screenshot(new GradientPickerForm(new GradientInfo()), "GradientPickerForm");
-
-                  // Forms that need parameters - use defaults
                   Screenshot(new ErrorForm("Test Error", "Stack trace here...", null, null, false), "ErrorForm");
                   Screenshot(new MyMessageBox("Test message", "Title"), "MyMessageBox");
+                  Screenshot(new InputBox("Enter value:", "Input"), "InputBox");
+                  Screenshot(new PrintTextForm(), "PrintTextForm");
               }
 
               static void Screenshot(Form form, string name)
