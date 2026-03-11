@@ -8,5 +8,6 @@
     <PackageReference Include="Avalonia" Version="11.2.7" />
     <PackageReference Include="Avalonia.Desktop" Version="11.2.7" />
     <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.7" />
+    <PackageReference Include="Avalonia.Themes.Simple" Version="11.2.7" />
   </ItemGroup>
 </Project>

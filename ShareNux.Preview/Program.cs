@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Styling;
-using Avalonia.Themes.Fluent;
+using Avalonia.Themes.Simple;
 using ShareNux.Preview;
 
 AppBuilder.Configure<App>()
@@ -13,14 +13,14 @@ class App : Application
     public override void Initialize()
     {
         RequestedThemeVariant = ThemeVariant.Dark;
-        Styles.Add(new FluentTheme());
+        Styles.Add(new SimpleTheme());
     }
 
     public override void OnFrameworkInitializationCompleted()
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new ErrorWindow();
+            desktop.MainWindow = new OutputBoxWindow();
         }
         base.OnFrameworkInitializationCompleted();
     }
