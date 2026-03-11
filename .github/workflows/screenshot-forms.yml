@@ -24,6 +24,8 @@ jobs:
           using System.Drawing;
           using System.Drawing.Imaging;
           using System.IO;
+          using System.Linq;
+          using System.Reflection;
           using System.Windows.Forms;
           using ShareX;
           using ShareX.HelpersLib;
@@ -128,6 +130,65 @@ jobs:
                   Screenshot(new ActionsToolbarEditForm(new List<HotkeyType>()), "ActionsToolbarEditForm");
                   Screenshot(new StickerForm(new List<StickerPackInfo> { new StickerPackInfo() { Name = "Test" } }, 0), "StickerForm");
                   Screenshot(new CustomUploaderSettingsForm(new UploadersConfig()), "CustomUploaderSettingsForm");
+
+                  // === Phase 1: Easy additions ===
+                  Screenshot(new TrayForm(), "TrayForm");
+                  Screenshot(new ImageEffectPackagerForm("{}", "TestEffect", "C:\\Effects"), "ImageEffectPackagerForm");
+                  Screenshot(new RegionCaptureForm(RegionCaptureMode.Default, new RegionCaptureOptions(), (Bitmap)testBitmap.Clone()), "RegionCaptureForm");
+                  Screenshot(new TaskSettingsForm(new TaskSettings(), true), "TaskSettingsForm");
+                  Screenshot(new ClipboardUploadForm(new TaskSettings(), false), "ClipboardUploadForm");
+                  Screenshot(new AfterCaptureForm(new TaskMetadata((Bitmap)testBitmap.Clone()), new TaskSettings()), "AfterCaptureForm");
+
+                  // TaskInfo forms
+                  var taskInfo = new TaskInfo();
+                  taskInfo.TaskSettings = new TaskSettings();
+                  taskInfo.FilePath = "C:\\test\\screenshot.png";
+                  Screenshot(new AfterUploadForm(taskInfo), "AfterUploadForm");
+                  Screenshot(new BeforeUploadForm(taskInfo), "BeforeUploadForm");
+
+                  // === Phase 2: History forms with temp SQLite ===
+                  var tempDbPath = Path.Combine(Path.GetTempPath(), "test_history.db");
+                  using (var historyManager = new HistoryManagerSQLite(tempDbPath))
+                  {
+                      Screenshot(new HistoryForm(historyManager, new HistorySettings()), "HistoryForm");
+                      Screenshot(new ImageHistoryForm(historyManager, new ImageHistorySettings()), "ImageHistoryForm");
+                      Screenshot(new HistoryImportForm(historyManager, new List<HistoryItem>()), "HistoryImportForm");
+                  }
+                  try { File.Delete(tempDbPath); } catch { }
+
+                  // === Phase 3: Reflection for private constructors ===
+                  ScreenshotPrivate<InputBox>("InputBox", new[] { typeof(string), typeof(string), typeof(string), typeof(string) }, 
+                      new object[] { "Enter Value", "", null, null });
+                  ScreenshotPrivate<OutputBox>("OutputBox", new[] { typeof(string), typeof(string), typeof(bool) },
+                      new object[] { "Output content here", "Output", false });
+                  ScreenshotPrivate<ImageViewer>("ImageViewer", new[] { typeof(Image) },
+                      new object[] { testImage });
+                  ScreenshotPrivate<ResponseForm>("ResponseForm", new[] { typeof(UploadResult) },
+                      new object[] { new UploadResult() });
+                  ScreenshotPrivate<ScrollingCaptureForm>("ScrollingCaptureForm", new[] { typeof(ScrollingCaptureOptions) },
+                      new object[] { new ScrollingCaptureOptions() });
+                  ScreenshotPrivate<UploadersConfigForm>("UploadersConfigForm", new[] { typeof(UploadersConfig) },
+                      new object[] { new UploadersConfig() });
+              }
+
+              static void ScreenshotPrivate<T>(string name, Type[] paramTypes, object[] args) where T : Form
+              {
+                  try
+                  {
+                      var ctor = typeof(T).GetConstructor(
+                          BindingFlags.NonPublic | BindingFlags.Instance, null, paramTypes, null);
+                      if (ctor == null)
+                      {
+                          Console.WriteLine($"Failed {name}: No matching constructor found");
+                          return;
+                      }
+                      var form = (Form)ctor.Invoke(args);
+                      Screenshot(form, name);
+                  }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine($"Failed {name}: {ex.Message}");
+                  }
               }
 
               static void Screenshot(Form form, string name)
