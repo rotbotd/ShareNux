@@ -6,10 +6,9 @@
   </PropertyGroup>
   
   <!-- Exclude WinForms designer files from compilation (keep for upstream merges) -->
-  <!-- But keep Resources.Designer.cs for localization -->
   <ItemGroup>
     <Compile Remove="**/*.Designer.cs" />
-    <Compile Include="**/Resources.Designer.cs" />
+    <Compile Include="Properties/Resources.Ported.cs" />
   </ItemGroup>
   
   <ItemGroup>

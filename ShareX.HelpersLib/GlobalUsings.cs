@@ -1,5 +1,10 @@
 // Global using aliases - maps System.Drawing/WinForms types to SkiaSharp/Avalonia equivalents
 
+// WinForms compatibility enums (from WinFormsEnums.cs)
+global using System.Windows.Forms;
+global using System.Drawing;
+global using System.Drawing.Imaging;
+
 // SkiaSharp types
 global using Color = SkiaSharp.SKColor;
 global using Bitmap = SkiaSharp.SKBitmap;

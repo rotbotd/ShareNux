@@ -1,4 +1,6 @@
-// WinForms enums needed for compilation
+// WinForms enums and value types needed for compilation
+// These are pure data types - no behavior stubs
+
 namespace System.Windows.Forms
 {
     [Flags]
@@ -52,6 +54,33 @@ namespace System.Windows.Forms
         Right = 4,
         Fill = 5
     }
+
+    public struct Padding
+    {
+        public int Left { get; set; }
+        public int Top { get; set; }
+        public int Right { get; set; }
+        public int Bottom { get; set; }
+        public int All { set { Left = Top = Right = Bottom = value; } }
+        public int Horizontal => Left + Right;
+        public int Vertical => Top + Bottom;
+        
+        public Padding(int all) { Left = Top = Right = Bottom = all; }
+        public Padding(int left, int top, int right, int bottom) { Left = left; Top = top; Right = right; Bottom = bottom; }
+        
+        public static readonly Padding Empty = new Padding(0);
+    }
+
+    public struct Message
+    {
+        public IntPtr HWnd { get; set; }
+        public int Msg { get; set; }
+        public IntPtr WParam { get; set; }
+        public IntPtr LParam { get; set; }
+        public IntPtr Result { get; set; }
+    }
+
+    public enum MouseButtons { None = 0, Left = 1, Right = 2, Middle = 4 }
 }
 
 namespace System.Drawing
@@ -85,6 +114,26 @@ namespace System.Drawing.Imaging
         WriteOnly = 2,
         ReadWrite = 3,
         UserInputBuffer = 4
+    }
+
+    public enum RotateFlipType
+    {
+        RotateNoneFlipNone = 0,
+        Rotate90FlipNone = 1,
+        Rotate180FlipNone = 2,
+        Rotate270FlipNone = 3,
+        RotateNoneFlipX = 4,
+        Rotate90FlipX = 5,
+        Rotate180FlipX = 6,
+        Rotate270FlipX = 7,
+        RotateNoneFlipY = Rotate180FlipX,
+        Rotate90FlipY = Rotate270FlipX,
+        Rotate180FlipY = RotateNoneFlipX,
+        Rotate270FlipY = Rotate90FlipX,
+        RotateNoneFlipXY = Rotate180FlipNone,
+        Rotate90FlipXY = Rotate270FlipNone,
+        Rotate180FlipXY = RotateNoneFlipNone,
+        Rotate270FlipXY = Rotate90FlipNone
     }
 
     public sealed class ImageFormat
